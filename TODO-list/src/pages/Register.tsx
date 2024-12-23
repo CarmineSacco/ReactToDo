@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Fragment } from "react/jsx-runtime";
+import { AuthService } from "../services/AuthService";
 
 const Register = () => {
   const [name, setName] = useState("");
