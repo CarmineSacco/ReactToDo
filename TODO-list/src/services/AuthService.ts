@@ -1,23 +1,39 @@
 import axios from "axios"
-
-import { IUserForm } from "../interfaces/IUserForm";
+import { IUserForm } from "../interfaces/auth/IUserForm";
+import { ILoginResponse } from "../interfaces/auth/ILoginResponse";
+import { IUser } from "../interfaces/auth/IUser";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-
-
-
 export const AuthService = {
-  login: () => {
-    //TODO : chiamata  api login
+  login: async (loginForm : {usernameEmail : string , password : string}) => {
+    let response !: ILoginResponse;
+    
+    await axios.post<ILoginResponse>(`${API_URL}login.php`, loginForm).then(res => response = res.data); 
+    
+    return response;
   },
 
-  register: (user : IUserForm) => {
-    //TODO : chiamata api per registrazione
+  register: async (user : IUserForm) => {
+    
     let response !: {success : boolean , message : string};
-      axios.post<{success : boolean , message : string}>(`${API_URL}register.php`, {
+     
+    await axios.post<{success : boolean , message : string}>(`${API_URL}register.php`, {
         user
        }).then(res =>response = res.data);
-    return response       
+    
+       return response       
   },
+
+  checkUserLogged: () => {
+    const userLogged = JSON.parse(localStorage.getItem("user") as string);
+      if (!userLogged) {
+        return false;
+      } 
+    return true;  
+  },
+
+  getUser : () : IUser | null=> {
+    return JSON.parse(localStorage.getItem("user") as string);
+  }
 };
