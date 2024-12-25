@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from "react";
 import { userService } from "../services/userService";
 import { IGetUserResponse } from "../interfaces/user/IGetUserResponse";
 import UserRow from "../components/UserRow";
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   search: string;
@@ -12,6 +12,15 @@ const UserList = ({ search }: Props) => {
   const [filteredUsers, setFilteredUsers] = useState<Array<IGetUserResponse>>(
     []
   );
+  const navigate = useNavigate();
+
+  const handleAddtask = (id_utente: number) => {
+    navigate(`/addTask/${id_utente}`);
+  };
+
+  const handleEditTask = (id_utente: number) => {
+    navigate(`/editTask/${id_utente}`);
+  };
 
   const getUsers = async () => {
     const fetchedUsers = await userService.getUsers();
@@ -38,7 +47,12 @@ const UserList = ({ search }: Props) => {
   return (
     <Fragment>
       {filteredUsers.map((user, index) => (
-        <UserRow key={index} user={user} />
+        <UserRow
+          key={index}
+          user={user}
+          onAddtask={handleAddtask}
+          onEdittask={handleEditTask}
+        />
       ))}
     </Fragment>
   );

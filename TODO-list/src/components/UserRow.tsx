@@ -2,9 +2,11 @@ import { IGetUserResponse } from "../interfaces/user/IGetUserResponse";
 
 interface Props {
   user: IGetUserResponse;
+  onAddtask: (id_utente: number) => void;
+  onEdittask: (id_utente: number) => void;
 }
 
-const UserRow = ({ user }: Props) => {
+const UserRow = ({ user, onAddtask, onEdittask }: Props) => {
   return (
     <div
       style={{
@@ -30,6 +32,7 @@ const UserRow = ({ user }: Props) => {
       </span>
       <div style={{ display: "flex", gap: "10px" }}>
         <button
+          onClick={() => onAddtask(user.id_utente)}
           style={{
             padding: "0.5rem 1rem",
             fontSize: "0.9rem",
@@ -50,6 +53,7 @@ const UserRow = ({ user }: Props) => {
           Aggiungi Task
         </button>
         <button
+          onClick={() => onEdittask(user.id_utente)}
           style={{
             padding: "0.5rem 1rem",
             fontSize: "0.9rem",
