@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Fragment } from "react/jsx-runtime";
 import { AuthService } from "../services/AuthService";
 import { useNavigate } from "react-router-dom";
+import { log } from "console";
 
 const Login = () => {
   const [formvalid, setFormValid] = useState(true);
@@ -29,12 +30,16 @@ const Login = () => {
   const handleSubmit = async () => {
     if (usernameEmail && password) {
       setFormValid(true);
-      const { success, message, nome, cognome } = await AuthService.login({
-        usernameEmail,
-        password,
-      });
+      const { success, message, nome, cognome, permesso } =
+        await AuthService.login({
+          usernameEmail,
+          password,
+        });
       if (success) {
-        localStorage.setItem("user", JSON.stringify({ nome, cognome })); //TODO inserire in localstorage nome , cognome , tipo permesso
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ nome, cognome, permesso })
+        );
         navigate("/home");
       } else {
         setError(message);

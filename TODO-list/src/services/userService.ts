@@ -7,7 +7,7 @@ export const userService = {
     getUsers : async ()=>{
         let response !: Array<IGetUserResponse>;
         
-        await axios.post<Array<IGetUserResponse>>(`${API_URL}getUsers.php;`)
+        await axios.post<Array<IGetUserResponse>>(`${API_URL}getUsers.php`, {})
         .then(res => response = res.data);
         
         return response
