@@ -20,5 +20,10 @@ export const Taskservice={
         let response !: {success : boolean , message : string}
         await axios.post<{success : boolean , message : string}>(`${API_URL}deleteTask.php`, {id_task}).then(res => response = res.data);
         return response
+    },
+    updateTask : async (task : IGetTasksResponse)=>{
+        let response !: {success : boolean , message : string}
+        await axios.post<{success : boolean , message : string}>(`${API_URL}editTAsk.php`, {...task}).then(res => response = res.data);
+        return response
     }
 }

@@ -38,10 +38,17 @@ const TaskList = () => {
   };
 
   const handleSave = async () => {
-    // if (selectedTask) {
-    //   await Taskservice.updateTask(selectedTask.id_task, selectedTask);
-    //   await getTasks();
-    // }
+    if (selectedTask) {
+      setTimeout(() => {
+        setMessage("");
+        setFormValid(true);
+      }, 5000); // 5 secondi
+
+      const response = await Taskservice.updateTask(selectedTask);
+      setMessage(response.message);
+      setSuccess(response.success);
+      await getTasks();
+    }
   };
 
   const handleDelete = async () => {
@@ -137,8 +144,8 @@ const TaskList = () => {
                   className="form-select"
                   id="stato"
                 >
-                  <option value="incompleto">Incompleto</option>
-                  <option value="completo">Completo</option>
+                  <option value="0">Incompleto</option>
+                  <option value="1">Completo</option>
                 </select>
               </div>
               <div className="d-grid">
