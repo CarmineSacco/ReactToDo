@@ -6,26 +6,31 @@ const AddTask = () => {
   const [formvalid, setFormValid] = useState(true);
   const [message, setMessage] = useState("");
   const [success, setSuccess] = useState(false);
-  const [title, setTitle] = useState("");
-  const [argument, setArgument] = useState("");
+  const [titolo, setTitolo] = useState("");
+  const [argomento, setArgomento] = useState("");
 
   const handleTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+    setTitolo(e.target.value);
   };
 
   const handleArgument = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setArgument(e.target.value);
+    setArgomento(e.target.value);
   };
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (!title || !argument) {
+    setTimeout(() => {
+      setMessage("");
+      setFormValid(true);
+    }, 5000); // 5 secondi
+
+    if (!titolo || !argomento) {
       setFormValid(false);
       setMessage("compila tutti i campi");
       setSuccess(false);
       return;
     }
-    const task = { title, argument, id_utente };
+    const task = { titolo, argomento, id_utente };
     const response = await Taskservice.addTask(task);
     setMessage(response.message);
     setSuccess(response.success);

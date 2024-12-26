@@ -5,7 +5,7 @@ import Navbar from "./components/shared/Navbar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AddTask from "./pages/AddTask";
-import TaskList from "./pages/TaskList";
+import TaskList from "./pages/taskListPage/TaskList";
 
 const AppRoutes = () => {
   return (
