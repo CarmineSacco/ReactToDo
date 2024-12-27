@@ -30,7 +30,7 @@ const Login = () => {
   const handleSubmit = async () => {
     if (usernameEmail && password) {
       setFormValid(true);
-      const { success, message, nome, cognome, permesso } =
+      const { success, message, nome, cognome, permesso, id_utente } =
         await AuthService.login({
           usernameEmail,
           password,
@@ -38,7 +38,7 @@ const Login = () => {
       if (success) {
         localStorage.setItem(
           "user",
-          JSON.stringify({ nome, cognome, permesso })
+          JSON.stringify({ nome, cognome, permesso, id_utente })
         );
         navigate("/home");
       } else {

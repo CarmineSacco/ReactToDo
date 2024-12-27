@@ -3,6 +3,7 @@ import { AuthService } from "./services/AuthService";
 import { useEffect, useState } from "react";
 import { IUser } from "./interfaces/auth/IUser";
 import UserList from "./pages/UserList";
+import UserTask from "./pages/userTaskPage/UserTask";
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -54,7 +55,11 @@ function App() {
           <b>
             {capitalize(user.nome)} {capitalize(user.cognome)}
           </b>
-          {user.permesso === "1" ? <UserList search={search} /> : null}
+          {user.permesso === "1" ? (
+            <UserList search={search} />
+          ) : (
+            <UserTask search={search} />
+          )}
         </div>
       )}
     </>

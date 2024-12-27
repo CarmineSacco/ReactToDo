@@ -25,5 +25,11 @@ export const Taskservice={
         let response !: {success : boolean , message : string}
         await axios.post<{success : boolean , message : string}>(`${API_URL}editTAsk.php`, {...task}).then(res => response = res.data);
         return response
+    },
+    
+    updateTaskStatus : async (id_utente : number , id_task : number)=>{
+        let response !: {success : boolean , message : string}
+        await axios.post<{success : boolean , message : string}>(`${API_URL}updateTaskStatus.php`, {id_utente , id_task}).then(res => response = res.data);
+        return response;
     }
 }

@@ -93,3 +93,11 @@
     background-color: #e53935;
   }
   
+  .todo {
+    background-color: rgba(229, 57, 53, 0.2); /* Rosso trasparente */
+  }
+  
+  .done {
+    background-color: rgba(69, 160, 73, 0.2); /* Verde trasparente */
+  }
+  

@@ -3,5 +3,6 @@ export interface ILoginResponse {
     cognome : string, 
     success : boolean,
     permesso : number,
-    message : string 
+    message : string ,
+    id_utente : number
 }
