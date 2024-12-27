@@ -35,7 +35,6 @@ Segui i passaggi indicati per configurare e avviare il progetto:
 2. Apri **phpMyAdmin** dal pannello di controllo di XAMPP.
 3. Importa il file del database fornito (`reacttodo.sql`):
    - Vai su **phpMyAdmin**.
-   - Crea un nuovo database (ad esempio: `reacttodo`).
    - Usa l'opzione **Importa** per caricare il file `reacttodo.sql`.
 
 ### 2. Posizionare i file backend
